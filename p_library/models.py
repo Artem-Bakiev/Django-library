@@ -6,6 +6,9 @@ class Author(models.Model):
     birth_year = models.SmallIntegerField()
     country = models.CharField(max_length=2)
 
+    def __str__(self):
+        return self.full_name
+
 class Book(models.Model):
     ISBN = models.CharField(max_length=13)
     title = models.TextField()
