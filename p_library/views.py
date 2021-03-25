@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.template import loader
 from p_library.models import Book
+from p_library.models import Redaction
 
 # Create your views here.
 def books_list(request):
@@ -50,4 +51,11 @@ def book_decrement(request):
         return redirect('/index/')
     else:
         return redirect('/index/')
-    
+
+def redactions(request):
+    template = loader.get_template('redactions.html')
+    redactions = Redaction.objects.all()
+    data = {
+        "redactions": redactions,
+    }
+    return HttpResponse(template.render(data, request))
